@@ -33,25 +33,34 @@ namespace SampleApp
             //{
             //    context.AuthenticateResult = new AuthenticateResult(user.Subject, user.Username);
             //}
-            
-            var credential = new NetworkCredential("uid=" + context.UserName + ",o=datakraftverk-virtual", context.Password);
 
-            using (var con = new LdapConnection("10.48.204.77:636") { Credential = credential, AuthType = AuthType.Basic, AutoBind = false })
+            try
             {
-                con.SessionOptions.ProtocolVersion = 3;
-                con.SessionOptions.VerifyServerCertificate += delegate { return true; };                
-                con.Bind();
-                
-                string filter = "(uid=" + context.UserName + ")";
-                SearchRequest search = new SearchRequest("o=datakraftverk-virtual", filter, SearchScope.Subtree, "*");
-                SearchResponse resp = con.SendRequest(search) as SearchResponse;
-                SearchResultEntry entry = resp.Entries[0];
-                                
-                context.AuthenticateResult = new AuthenticateResult(context.UserName, entry.Attributes["cn"][0].ToString());
+                var credential = new NetworkCredential("uid=" + context.UserName + ",o=datakraftverk-virtual", context.Password);
 
-                Users.Add(new CustomUser() { Subject = context.UserName, Claims = new List<Claim>() { new Claim("email", entry.Attributes["mail"][0].ToString()), new Claim("cn", entry.Attributes["cn"][0].ToString()), new Claim("roles", "role1,role2") } });
+                using (var con = new LdapConnection("10.48.204.77:636") { Credential = credential, AuthType = AuthType.Basic, AutoBind = false })
+                {
+                    con.SessionOptions.ProtocolVersion = 3;
+                    con.SessionOptions.VerifyServerCertificate += delegate { return true; };
+               
+                    //  this will authenticate
+                    con.Bind();                
+                
+                    string filter = "(uid=" + context.UserName + ")";
+                    SearchRequest search = new SearchRequest("o=datakraftverk-virtual", filter, SearchScope.Subtree, "*");
+                    SearchResponse resp = con.SendRequest(search) as SearchResponse;
+                    SearchResultEntry entry = resp.Entries[0];
+                                
+                    context.AuthenticateResult = new AuthenticateResult(context.UserName, entry.Attributes["displayName"][0].ToString());
+
+                    Users.Add(new CustomUser() { Subject = context.UserName, Claims = new List<Claim>() { new Claim("email", entry.Attributes["mail"][0].ToString()), new Claim("name", entry.Attributes["displayName"][0].ToString()) } });
+                }
             }
-            
+            catch (Exception e)
+            {
+                context.AuthenticateResult = new AuthenticateResult(e.Message);
+            }
+
             return Task.FromResult(0);
         }
 
@@ -100,8 +109,9 @@ namespace SampleApp
                     search = new SearchRequest("o=ids-groups", filter, SearchScope.Subtree, "*");
                     resp = con.SendRequest(search) as SearchResponse;
                     
-                    foreach(SearchResultEntry group in resp.Entries)
-                        claims.Add(new Claim("role", group.Attributes["cn"][0].ToString()));                    
+                    if(resp.Entries != null && resp.Entries.Count > 0)
+                        foreach(SearchResultEntry group in resp.Entries)
+                            claims.Add(new Claim("role", group.Attributes["cn"][0].ToString()));                    
                 }
                 context.IssuedClaims = claims.Where(x => context.RequestedClaimTypes.Contains(x.Type));
             }
