@@ -79,6 +79,12 @@ namespace SampleApp
                 //  openid
                 claims.Add(new Claim("sub", entry.Attributes["uid"][0].ToString()));
 
+                //  profile
+                // name, family_name, given_name, middle_name, nickname, preferred_username, profile, picture, website, gender, birthdate, zoneinfo, locale, and updated_at
+                if (entry.Attributes.Contains("displayName")) claims.Add(new Claim("name", entry.Attributes["displayName"][0].ToString()));
+                if (entry.Attributes.Contains("givenName")) claims.Add(new Claim("given_name", entry.Attributes["givenName"][0].ToString()));
+                if (entry.Attributes.Contains("sn")) claims.Add(new Claim("family_name", entry.Attributes["sn"][0].ToString()));
+                
                 //  email scope
                 if (context.RequestedClaimTypes.Contains("email"))
                     claims.Add(new Claim("email", entry.Attributes["mail"][0].ToString()));

@@ -20,8 +20,8 @@ namespace MvcFormPostClient.Controllers
             var url = Constants.AuthorizeEndpoint +
                 "?client_id=nolib.client" +
                 "&response_type=id_token" +
-                "&scope=openid email" +
-                "&redirect_uri=http://localhost:11716/account/signInCallback" +
+                "&scope=openid email profile roles" +
+                "&redirect_uri=https://connect.acc.prov.testaws.visma.net/mvc/account/signInCallback" +
                 "&response_mode=form_post" +
                 "&state=" + state +
                 "&nonce=" + nonce;
@@ -41,7 +41,7 @@ namespace MvcFormPostClient.Controllers
 	        var id = new ClaimsIdentity(claims, "Cookies");
 	        Request.GetOwinContext().Authentication.SignIn(id);
 
-	        return Redirect("/");
+	        return Redirect("/mvc");
         }
 
         private async Task<IEnumerable<Claim>> ValidateIdentityTokenAsync(string token, string state)
@@ -89,11 +89,11 @@ namespace MvcFormPostClient.Controllers
             return id.Claims;
         }
 
-		public ActionResult SignOut()
-		{
-			Request.GetOwinContext().Authentication.SignOut();
-            return Redirect("/");
-		}
+        public ActionResult SignOut()
+        {
+            Request.GetOwinContext().Authentication.SignOut();
+            return Redirect("/mvc");
+        }
 
 		private void SetTempCookie(string state, string nonce)
 		{

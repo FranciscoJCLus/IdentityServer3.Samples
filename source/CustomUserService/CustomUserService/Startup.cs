@@ -38,21 +38,23 @@ namespace SampleApp
 
                 var options = new IdentityServerOptions
                 {
-                    SiteName = "IdentityServer3 - CustomUserService",
+                    SiteName = "Visma Connect IdP",
+
+                    EnableWelcomePage = false,                    
 
                     SigningCertificate = Certificate.Get(),
                     Factory = factory,
                     
                     AuthenticationOptions = new AuthenticationOptions
                     {
-                        IdentityProviders = ConfigureAdditionalIdentityProviders,
-                        LoginPageLinks = new LoginPageLink[] { 
-                            new LoginPageLink{
-                                Text = "Register",
-                                //Href = "~/localregistration"
-                                Href = "localregistration"
-                            }
-                        }
+                        //IdentityProviders = ConfigureAdditionalIdentityProviders,
+                        //LoginPageLinks = new LoginPageLink[] { 
+                        //    new LoginPageLink{
+                        //        Text = "Register",
+                        //        //Href = "~/localregistration"
+                        //        Href = "localregistration"
+                        //    }
+                        //}
                     },
 
                     EventsOptions = new EventsOptions
