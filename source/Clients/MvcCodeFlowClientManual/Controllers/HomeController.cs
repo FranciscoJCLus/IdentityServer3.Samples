@@ -29,7 +29,8 @@ namespace MvcCodeFlowClientManual.Controllers
                 clientId:     "codeclient",
                 responseType: "code",
                 scope:        scopes,
-                redirectUri:  "https://localhost:44312/callback",
+                //redirectUri:  "https://localhost:44312/callback",
+                redirectUri: "https://10.3.2.160:4343/client1/callback",
                 state:        state,
                 nonce:        nonce);
 

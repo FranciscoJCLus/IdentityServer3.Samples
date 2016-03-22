@@ -250,11 +250,12 @@ namespace IdentityServer3.Host.Config
                     RequireConsent = true,
                     AllowRememberConsent = true,
 
-                    ClientUri = "https://identityserver.io",
+                    ClientUri = "https://connect.acc.prov.testaws.visma.net/mvc",
 
                     RedirectUris = new List<string>
                     {
-                        "https://localhost:44312/callback",
+                        //"https://localhost:44312/callback",
+                        "https://connect.acc.prov.testaws.visma.net/mvc",
                     },
 
                     AllowedScopes = new List<string>
@@ -269,6 +270,41 @@ namespace IdentityServer3.Host.Config
                     },
 
                     AccessTokenType = AccessTokenType.Reference,
+                },
+                /////////////////////////////////////////////////////////////
+                // MVC CodeFlowClient Manual
+                /////////////////////////////////////////////////////////////
+                new Client
+                {
+                    ClientName = "WordpressTest",
+                    ClientId = "WordpressTest",
+                    Flow = Flows.AuthorizationCode,
+
+                    ClientSecrets = new List<Secret>
+                    {
+                        new Secret("secret".Sha256())
+                    },
+
+                    RequireConsent = true,
+                    AllowRememberConsent = true,
+
+                    ClientUri = "http://52.17.27.35/wordpress",
+
+                    RedirectUris = new List<string>
+                    {
+                        //"https://localhost:44312/callback",
+                        "http://52.17.27.35/wordpress/wp-admin/admin-ajax.php?action=openidconn-callback",
+                    },
+                                        
+                    AllowedScopes = new List<string>
+                    {
+                        Constants.StandardScopes.OpenId,
+                        Constants.StandardScopes.Profile,
+                        Constants.StandardScopes.Email,
+                        Constants.StandardScopes.Roles
+                    },
+
+                    AccessTokenType = AccessTokenType.Jwt,
                 },
 
                 /////////////////////////////////////////////////////////////

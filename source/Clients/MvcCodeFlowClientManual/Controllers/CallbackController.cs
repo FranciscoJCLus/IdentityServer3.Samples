@@ -53,7 +53,8 @@ namespace MvcCodeFlowClientManual.Controllers
 
             var response = await client.RequestAuthorizationCodeAsync(
                 code,
-                "https://localhost:44312/callback");
+                //"https://localhost:44312/callback");
+                "https://10.3.2.160:4343/client1/callback");
 
             await ValidateResponseAndSignInAsync(response, tempState.Item2);
 

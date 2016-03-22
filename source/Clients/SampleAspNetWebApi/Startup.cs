@@ -15,7 +15,8 @@ namespace SampleAspNetWebApi
 
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
                 {
-                    Authority = "https://localhost:44333/core",
+                    //Authority = "https://localhost:44333/core",
+                    Authority = "https://10.3.2.160:4343/identityserver3/core",
                     RequiredScopes = new[] { "write" },
 
                     // client credentials for the introspection endpoint
