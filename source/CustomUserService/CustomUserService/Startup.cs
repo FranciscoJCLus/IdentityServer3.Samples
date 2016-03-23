@@ -47,6 +47,7 @@ namespace SampleApp
                     
                     AuthenticationOptions = new AuthenticationOptions
                     {
+                        EnablePostSignOutAutoRedirect = true
                         //IdentityProviders = ConfigureAdditionalIdentityProviders,
                         //LoginPageLinks = new LoginPageLink[] { 
                         //    new LoginPageLink{

@@ -336,6 +336,10 @@ namespace IdentityServer3.Host.Config
                     {
                         "https://connect.acc.prov.testaws.visma.net/mvc/account/signInCallback",
                     },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "https://connect.acc.prov.testaws.visma.net/mvc"
+                    }
                 },
 
                 /////////////////////////////////////////////////////////////
@@ -370,15 +374,15 @@ namespace IdentityServer3.Host.Config
 
                     RedirectUris = new List<string>
                     {
-                        "https://localhost:44300/"
+                        "https://connect.acc.prov.testaws.visma.net/mvchybrid/"
                     },
 
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "https://localhost:44300/"
+                        "https://connect.acc.prov.testaws.visma.net/mvchybrid"
                     },
 
-                    LogoutUri = "https://localhost:44300/Home/OidcSignOut",
+                    LogoutUri = "https://connect.acc.prov.testaws.visma.net/mvchybrid/Home/OidcSignOut",
                     LogoutSessionRequired = true
                 },
 
@@ -401,17 +405,25 @@ namespace IdentityServer3.Host.Config
                         Constants.StandardScopes.Address,
                     },
 
-                    ClientUri = "https://identityserver.io",
+                    ClientUri = "https://connect.acc.prov.testaws.visma.net/mvcimplicit",
 
-                    RequireConsent = true,
-                    AllowRememberConsent = true,
+                    RequireConsent = false,
+                    //AllowRememberConsent = true,
 
                     RedirectUris = new List<string>
                     {
-                        "https://localhost:44301/"
+                        "https://connect.acc.prov.testaws.visma.net/mvcimplicit",
+                        "https://connect.acc.prov.testaws.visma.net/mvcimplicit/Home/Claims"
                     },
 
-                    LogoutUri = "https://localhost:44301/Home/SignoutCleanup",
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "https://connect.acc.prov.testaws.visma.net/mvcimplicit"
+                    },
+
+                    RequireSignOutPrompt = true,
+                                        
+                    LogoutUri = "https://connect.acc.prov.testaws.visma.net/mvcimplicit/Home/SignoutCleanup",
                     LogoutSessionRequired = true,
                 },
 
