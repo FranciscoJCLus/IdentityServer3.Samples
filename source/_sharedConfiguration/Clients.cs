@@ -255,7 +255,7 @@ namespace IdentityServer3.Host.Config
                     RedirectUris = new List<string>
                     {
                         //"https://localhost:44312/callback",
-                        "https://connect.acc.prov.testaws.visma.net/mvc",
+                        "https://connect.acc.prov.testaws.visma.net/mvc/callback",
                     },
 
                     AllowedScopes = new List<string>
@@ -312,7 +312,7 @@ namespace IdentityServer3.Host.Config
                 /////////////////////////////////////////////////////////////
                 new Client
                 {
-                    ClientName = "OpenID Connect without Client Library Sample",
+                    ClientName = "OpenID Connect Sample",
                     ClientId = "nolib.client",
                     Flow = Flows.Implicit,
 
@@ -329,12 +329,12 @@ namespace IdentityServer3.Host.Config
 
                     ClientUri = "https://identityserver.io",
 
-                    RequireConsent = true,
-                    AllowRememberConsent = true,
+                    RequireConsent = false,
+                    //AllowRememberConsent = true,
 
                     RedirectUris = new List<string>
                     {
-                        "http://localhost:11716/account/signInCallback",
+                        "https://connect.acc.prov.testaws.visma.net/mvc/account/signInCallback",
                     },
                 },
 
