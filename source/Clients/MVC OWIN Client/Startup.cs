@@ -30,7 +30,7 @@ namespace MVC_OWIN_Client
             {
                 ClientId = "mvc.owin.implicit",
                 Authority = Constants.BaseAddress,
-                RedirectUri = "https://connect.acc.prov.testaws.visma.net/mvcimplicit/Home/Claims",
+                RedirectUri = "https://connect.acc.prov.testaws.visma.net/oidcsample/Home/Claims",
                 ResponseType = "id_token",
                 Scope = "openid email profile roles",
 

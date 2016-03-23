@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html ng-app="app" ng-controller="LayoutCtrl">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .validation-summary-errors {
+            border: 1px solid;
+            color: red;
+            margin-bottom: 5px;
+        }
+
+            .validation-summary-errors li {
+                list-style: none;
+            }
+    </style>
+    <title>{siteName}</title>
+
+    <link href="../content/libs/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../content/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../content/app/Site.css" rel="stylesheet" />
+    <link href="../content/app/app.css" rel="stylesheet" />
+    <script src="../content/libs/modernizr/modernizr-2.6.2.js"></script>
+
+</head>
+<body id="loginbody" lang="en">
+
+    <div id="login" ng-cloak>
+
+        <div class='container page-logout'>            
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <p>Would you like to logout of {{model.siteName}}?</p>
+                    <form name="form" method="post" action="{{model.logoutUrl}}">
+                        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+                        <fieldset>
+                            <div class="form-group">
+                                <button class="btn btn-primary">Yes</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer"></div>
+        <div id="logo"></div>
+        <div class="name">Visma Connect</div>
+
+    </div>
+
+    <footer>
+        &copy; Visma - All rights reserved
+    </footer>
+
+    <script id='modelJson' type='application/json'>
+        {model}
+    </script>
+
+    <script src="../content/libs/jquery/jquery-1.11.0.min.js"></script>
+    <script src="../content/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../content/libs/angular/angular.1.2.13.min.js"></script>
+    <script src="../content/libs/encoder/encoder.min.js"></script>
+    <script src="../content/app/app.js"></script>
+
+</body>
+</html>

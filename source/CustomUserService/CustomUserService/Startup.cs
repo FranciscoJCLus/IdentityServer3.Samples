@@ -17,15 +17,18 @@ namespace SampleApp
         public void Configuration(IAppBuilder app)
         {
             Log.Logger = new LoggerConfiguration()
-                           .MinimumLevel.Debug()
-                           .WriteTo.Trace()
-                           .CreateLogger();
+            .MinimumLevel.Debug()
+            .WriteTo.Trace()
+            .CreateLogger();
 
             app.Map("/core", coreApp =>
             {
                 var factory = new IdentityServerServiceFactory()
                     .UseInMemoryClients(Clients.Get())
                     .UseInMemoryScopes(Scopes.Get());
+
+                //  custom login page
+                factory.ViewService = new Registration<IViewService, CustomViewService>();
 
                 // different examples of custom user services
                 //var userService = new RegisterFirstExternalRegistrationUserService();
@@ -35,19 +38,18 @@ namespace SampleApp
 
                 // note: for the sample this registration is a singletone (not what you want in production probably)
                 factory.UserService = new Registration<IUserService>(resolver => userService);
-
+                
                 var options = new IdentityServerOptions
                 {
-                    SiteName = "Visma Connect IdP",
-
-                    EnableWelcomePage = false,                    
+                    SiteName = "Visma Connect IdP",                
 
                     SigningCertificate = Certificate.Get(),
                     Factory = factory,
                     
                     AuthenticationOptions = new AuthenticationOptions
                     {
-                        EnablePostSignOutAutoRedirect = true
+                        EnablePostSignOutAutoRedirect = true,
+                        PostSignOutAutoRedirectDelay = 2
                         //IdentityProviders = ConfigureAdditionalIdentityProviders,
                         //LoginPageLinks = new LoginPageLink[] { 
                         //    new LoginPageLink{

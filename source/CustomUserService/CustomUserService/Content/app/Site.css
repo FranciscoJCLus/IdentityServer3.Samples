@@ -1,0 +1,94 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#loginbody {
+    background: url("../login_background.png") white 50% 0;
+    padding: 240px 0 0;
+    position: relative;
+    width: 100%;
+}
+
+#login {
+    margin: 0 auto;
+    padding: 160px 55px 100px 55px;
+    width: 465px;
+    background: #ebebeb url("../header_1.png") no-repeat center -2px;
+    border-radius: 8px;
+    position: relative;
+    border: 1px solid #999999;
+    box-shadow: 4px 4px 7px -4px rgba(0,0,0,0.3);
+}
+
+#login #logo {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    background: url("../visma_expense.png") no-repeat center center;
+    width: 150px;
+    height: 100px;
+}
+
+#login .name {
+    position: absolute;
+    top: 44px;
+    left: 155px;
+    color: #FFFFFF;
+    width: 330px;
+    height: 40px;
+    font: 36px Arial, Helvetica, sans-serif;
+}
+
+#login .footer {
+    height: 42px;
+    border-top: 1px solid #999999;
+    box-shadow: inset 0 1px 0 #fff;
+    background: url("../visma_red_logo.png") no-repeat center center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.ctrlHolder {
+    margin-bottom: 8px;
+}
+
+label {
+    color: #323232;
+    display: inline-block;
+    font: 13px Arial, Helvetica, sans-serif;
+    width: 150px;
+}
+
+body footer {
+    color: #646464;
+    font: 12px Arial, Helvetica, sans-serif;
+    margin: 10px auto;
+    height: 50px;
+}
+
+footer, #footer {
+    text-align: center;
+}

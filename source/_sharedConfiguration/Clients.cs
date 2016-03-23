@@ -392,7 +392,7 @@ namespace IdentityServer3.Host.Config
                 /////////////////////////////////////////////////////////////
                 new Client
                 {
-                    ClientName = "MVC OWIN Implicit Client",
+                    ClientName = "OpenID Connect sample",
                     ClientId = "mvc.owin.implicit",
                     Flow = Flows.Implicit,
 
@@ -405,28 +405,28 @@ namespace IdentityServer3.Host.Config
                         Constants.StandardScopes.Address,
                     },
 
-                    ClientUri = "https://connect.acc.prov.testaws.visma.net/mvcimplicit",
+                    ClientUri = "https://connect.acc.prov.testaws.visma.net/oidcsample",
 
                     RequireConsent = false,
                     //AllowRememberConsent = true,
 
                     RedirectUris = new List<string>
                     {
-                        "https://connect.acc.prov.testaws.visma.net/mvcimplicit",
-                        "https://connect.acc.prov.testaws.visma.net/mvcimplicit/Home/Claims"
+                        "https://connect.acc.prov.testaws.visma.net/oidcsample",
+                        "https://connect.acc.prov.testaws.visma.net/oidcsample/Home/Claims"
                     },
 
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "https://connect.acc.prov.testaws.visma.net/mvcimplicit"
+                        "https://connect.acc.prov.testaws.visma.net/oidcsample"
                     },
 
                     RequireSignOutPrompt = true,
                                         
-                    LogoutUri = "https://connect.acc.prov.testaws.visma.net/mvcimplicit/Home/SignoutCleanup",
+                    LogoutUri = "https://connect.acc.prov.testaws.visma.net/oidcsample/Home/SignoutCleanup",
                     LogoutSessionRequired = true,
                 },
-
+                
                 /////////////////////////////////////////////////////////////
                 // WebForms OWIN Implicit Client
                 /////////////////////////////////////////////////////////////
