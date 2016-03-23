@@ -47,6 +47,10 @@ namespace MVC_OWIN_Client.Controllers
             //};
 
             Request.GetOwinContext().Authentication.SignOut();
+            //Request.GetOwinContext().Authentication.SignOut(new Microsoft.Owin.Security.AuthenticationProperties()
+            //{
+            //    RedirectUri = "https://connect.acc.prov.testaws.visma.net/mvchybrid/"
+            //});
             return Redirect("/");
         }
 
